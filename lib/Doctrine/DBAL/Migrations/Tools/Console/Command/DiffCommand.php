@@ -135,6 +135,15 @@ EOT
                 ),
                 ""
             );
+            
+            $dbname=$configuration->getConnection()->getDatabase();
+            array_unshift(
+            		$code,
+            		'if($this->connection->getDatabase()!="'.$dbname.'"){ $this->addSql("select 1"); return 1;};'
+            		,
+            		""
+            );
+            
         }
 
         return implode("\n", $code);
