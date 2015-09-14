@@ -87,7 +87,7 @@ EOT
         }
 
         $fromSchema = $conn->getSchemaManager()->createSchema();
-        $toSchema = $this->getSchemaProvider()->createSchema();
+        $toSchema = $this->getSchemaProvider()->createSchema($bundle);
 
         //Not using value from options, because filters can be set from config.yml
         if ( ! $isDbalOld && $filterExpr = $conn->getConfiguration()->getFilterSchemaAssetsExpression()) {
