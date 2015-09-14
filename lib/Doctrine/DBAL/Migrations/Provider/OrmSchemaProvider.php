@@ -50,9 +50,9 @@ final class OrmSchemaProvider implements SchemaProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function createSchema()
+    public function createSchema($bundle=null)
     {
-        $metadata = $this->entityManager->getMetadataFactory()->getAllMetadata();
+        $metadata = $this->entityManager->getMetadataFactory()->getAllMetadata($bundle);
         if (empty($metadata)) {
             throw new \UnexpectedValueException('No mapping information to process');
         }
