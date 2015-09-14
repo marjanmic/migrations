@@ -66,7 +66,7 @@ You can optionally specify a <comment>--editor-cmd</comment> option to open the 
     <info>%command.full_name% --editor-cmd=mate</info>
 EOT
             )
-            ->addOption('filter-expression', null, InputOption::VALUE_OPTIONAL, 'Tables which are filtered by Regular Expression.');
+            ->addOption('filter-expression', null, InputOption::VALUE_OPTIONAL, 'Tables which are filtered by Regular Expression.')->addOption('bundle', null, InputOption::VALUE_OPTIONAL, 'Root bundle');
     }
 
     public function execute(InputInterface $input, OutputInterface $output)
@@ -76,7 +76,7 @@ EOT
 
         $conn = $configuration->getConnection();
         $platform = $conn->getDatabasePlatform();
-
+        $bundle = $input->getOption('bundle');
         if ($filterExpr = $input->getOption('filter-expression')) {
             if ($isDbalOld) {
                 throw new \InvalidArgumentException('The "--filter-expression" option can only be used as of Doctrine DBAL 2.2');
